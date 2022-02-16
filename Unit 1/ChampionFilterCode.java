@@ -27,26 +27,26 @@ public class ChampionFilterCode {
 	        
 	        	//reading file
 	        	while ((line = br.readLine()) != null) {     
-	        	if (line.contains("\"name\""))  {
-	        		champion = line.substring(line.indexOf(": \"") + 3,line.length()-2); //getting the name only
-	            	}
-	        	if (line.contains("\"hp\"")) {
-	            		hp = Double.parseDouble(line.substring(line.indexOf(":") + 2, line.length()-1)); //getting the hp and turning it into a double
-	            		//if hp is higher than the current highest hp, replace it
-	            		if (hp > highestHp) {  
-	            			highestHp = hp; 
-	                    		championHighesthHp = champion;
+				if (line.contains("\"name\""))  {
+					champion = line.substring(line.indexOf(": \"") + 3,line.length()-2); //getting the name only
+				}
+				if (line.contains("\"hp\"")) {
+					hp = Double.parseDouble(line.substring(line.indexOf(":") + 2, line.length()-1)); //getting the hp and turning it into a double
+					//if hp is higher than the current highest hp, replace it
+					if (hp > highestHp) {  
+						highestHp = hp; 
+						championHighesthHp = champion;
+					}
+				}
+				if (line.contains("\"armor\"")) {
+					armor = Double.parseDouble(line.substring(line.indexOf(":") + 2, line.length()-1)); //getting the armor and turning it into a double
+					//if armor is higher than the current highest armor, replace it
+					if (armor < lowestArmor) {
+						lowestArmor = armor;
+						championLowestArmor = champion;
+					}
 	            		}
 	        	}
-	            	if (line.contains("\"armor\"")) {
-	            		armor = Double.parseDouble(line.substring(line.indexOf(":") + 2, line.length()-1)); //getting the armor and turning it into a double
-	            		//if armor is higher than the current highest armor, replace it
-	            		if (armor < lowestArmor) {
-	            			lowestArmor = armor;
-	            			championLowestArmor = champion;
-	            		}
-	            	}
-	        }
 	        br.close();
 	        fr.close();
 	        
