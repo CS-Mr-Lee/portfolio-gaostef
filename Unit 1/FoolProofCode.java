@@ -59,11 +59,11 @@ public class FoolProofCode
 			}	
 			//if user inputs anything else it tells them and makes them try again.
 			catch (Exception e) {
-			System.out.println("You entered bad data "); 
-			System.out.println("Please try again.");
-			System.out.println("");
+				System.out.println("You entered bad data "); 
+				System.out.println("Please try again.");
+				System.out.println("");
             
-			scanner.close();
+				scanner.close();
 			}
 		}
 	}
