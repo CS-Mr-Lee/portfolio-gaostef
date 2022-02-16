@@ -64,11 +64,11 @@ public class SAScode
 	     * @return missingSide calculated third slide
 	     */
 		static double finding3rdSide(double side1, double side2, double angle3)
-	{
+		{
 		double missingSide = Math.sqrt((side1*side1)+(side2*side2)-(2*side1*side2)*(Math.cos(angle3)));
 		
 		return missingSide;
-	}
+		}
 
 }
 		
