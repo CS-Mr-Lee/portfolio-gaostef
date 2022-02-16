@@ -42,33 +42,32 @@ public class SAScode
 		 
 		 //printing which angle is the smallest
 		 if(angleADegrees<=angleBDegrees && angleADegrees<=angleCDegrees)
-	      {
-	         System.out.printf("The smallest angle is %.2f",angleADegrees);
-	      }
-	      else if(angleB<=angleADegrees && angleBDegrees<=angleCDegrees)
-	      {
-	         System.out.printf("The smallest angle is %.2f",angleBDegrees);
-	      }
-	      else if(angleC<=angleADegrees && angleC<=angleBDegrees)
-	      {
-	         System.out.printf("The smallest angle is %.2f",angleCDegrees);
-	      }
+	         {
+	         	System.out.printf("The smallest angle is %.2f",angleADegrees);
+	         }
+	         else if(angleB<=angleADegrees && angleBDegrees<=angleCDegrees)
+	         {
+	         	System.out.printf("The smallest angle is %.2f",angleBDegrees);
+	         }
+	         else if(angleC<=angleADegrees && angleC<=angleBDegrees)
+	         {
+	         	System.out.printf("The smallest angle is %.2f",angleCDegrees);
+	         }
 		 
 		 
-		}
-	    /**
-	     * description: This method calculates the third side of the triangle
-	     * @param side1 first side input
-	     * @param side2 second side input
-	     * @param angle3 angle input
-	     * @return missingSide calculated third slide
-	     */
-		static double finding3rdSide(double side1, double side2, double angle3)
-		{
+	}
+	/**
+	 * description: This method calculates the third side of the triangle
+	 * @param side1 first side input
+	 * @param side2 second side input
+	 * @param angle3 angle input
+	 * @return missingSide calculated third slide
+	 */
+	 static double finding3rdSide(double side1, double side2, double angle3)
+	 {
 		double missingSide = Math.sqrt((side1*side1)+(side2*side2)-(2*side1*side2)*(Math.cos(angle3)));
-		
 		return missingSide;
-		}
+	 }
 
 }
 		
