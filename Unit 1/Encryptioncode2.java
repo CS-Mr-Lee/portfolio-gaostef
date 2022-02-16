@@ -32,9 +32,9 @@ public class Encryptioncode2
          
          //swapping the first and last
          System.out.print(words[i].charAt(words[i].length()-1));
+         
          while (currNum < (words[i].length())-1) {
-        	 
-        	//shifting the words by 2 after it in the ASCII table
+        	   //shifting the words by 2 after it in the ASCII table
             char currC = words[i].charAt(currNum);
             sum = sum + currC; 
             char newChar = (char) (currC+2);
