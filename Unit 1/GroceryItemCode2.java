@@ -38,13 +38,13 @@ public class GroceryItemCode2 {
 		
 		//printing out the output
 		for (int j = 0; j < 27; j++) { //printing the lines
-	         System.out.print("-"); 
+	        	System.out.print("-"); 
 		}
 		System.out.println(" ");
 		System.out.printf("%-20s %6s %n",grocery1,format1);
 		System.out.printf("%-20s %6s %n",grocery2,format2);
 		for (int j = 0; j < 27; j++) {
-	         System.out.print("-");
+	        	System.out.print("-");
 		}
 	}
 }
