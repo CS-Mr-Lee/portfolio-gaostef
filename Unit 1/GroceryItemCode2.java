@@ -7,12 +7,6 @@
 import java.util.Scanner;
 
 public class GroceryItemCode2 {
-	/**
-	 * 
-	 * @param grocery1
-	 * @param 
-	 * @return the output
-	 */
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner (System.in);
 		
