@@ -1,0 +1,78 @@
+
+public class Cookie {
+
+	/** the name of the cookie */
+	String name = "";
+	/** the weight of the cookie*/
+	double weight = -1;
+	/** the calories of the cookie*/
+	double calories = -1;
+	/** is it packaged or not*/
+	boolean isPackaged;
+
+	
+	/**
+	 * Name: Cookie 
+	 * Description: Constructor for the human class
+	 * @param name        - String value for the name of the cookie
+	 * @param weight      - double value for the weight of the cookie
+	 * @param energyLevel - double value for the energy level of the cookie
+	 */
+	public Cookie(String name, double weight, int calories) {
+		this.name = name;
+		this.calories = calories;
+		if (weight < 0) {
+			this.weight = 1;
+		} else {
+			this.weight = weight;
+		}
+	}
+
+	/**
+	 * Name: Cookie 
+	 * Description: Constructor for the human class
+	 * @param name        - String value for the name of the cookie
+	 * @param weight      - double value for the weight of the cookie
+	 * @param energyLevel - double value for the energy level of the cookie
+	 * @param isPackaged  - boolean value for if it is packaged or not
+	 */
+	public Cookie(String name, double weight, int calories, boolean isPackaged) {
+		this.name = name;
+		this.calories = calories;
+		if (weight < 0) {
+			this.weight = 1;
+		} else {
+			this.weight = weight;
+		}
+		this.isPackaged = isPackaged;
+	}
+
+	public void open() {
+		if (isPackaged = true) {
+			isPackaged = false;
+		}
+	}
+
+	public void eaten(double removedWeight) {
+			double percentage = removedWeight/weight;
+			weight = weight * percentage;
+			calories = calories *  percentage;
+			
+			if (weight < 0) {
+				weight = -1;
+			
+		}
+			if (calories < 0) {
+				calories = -1;
+			}
+		if(isPackaged=true)
+
+	{
+		weight = -2;
+		calories = -2;
+	}
+	}
+	public String toString() {
+		return "Name: " + name + "\nWeight: " + weight + "\ncalories: " + calories;
+	}
+}
