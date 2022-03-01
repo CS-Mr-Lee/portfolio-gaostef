@@ -1,0 +1,128 @@
+class Human {
+
+	// attributes
+	/** The name of the human */
+	private String name;
+	/** the weight of the human */
+	private double weight;
+	/** the energy level of the human */
+	private double energyLevel;
+
+	// constructor
+	/**
+	 * Name: Human Description: Constructor for the human class
+	 * 
+	 * @param name        - String value for the name of the human
+	 * @param gender      - String value for the gender of the human
+	 * @param weight      - double value for the weight of the human
+	 * @param energyLevel - double value for the energy level of the human
+	 * @param height      - double value for the height of the human
+	 */
+	public Human(String name, double weight, double energyLevel) {
+		this.name = name;
+		this.weight = Math.max(0, weight); // weight cannot be negative
+		this.energyLevel = Math.max(0, Math.min(100, energyLevel)); // ensures that energy level is within the range of
+																	// 0-10e
+	}
+
+	// accessors
+	/**
+	 * Name: getName Description: gets the name of the human
+	 * 
+	 * @return - String value for the name of the human
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+	/**
+	 * Name: getWeight Description: gets the weight of the human
+	 * 
+	 * @return - returns a double value representing the weight of the human
+	 */
+	public double getWeight() {
+		return weight;
+	}
+
+	/**
+	 * Name: getEnergyLevel Description: gets the energy level of the human
+	 * 
+	 * @return - returns a double value for the current energy level of the human
+	 */
+	public double getEnergyLevel() {
+		return energyLevel;
+	}
+
+
+	// mutators
+	/**
+	 * Name: setWeight Description: sets the weight of the human object to the new
+	 * weight as specified in the input
+	 * 
+	 * @param newWeight - double value for the new weight of the human
+	 */
+	public void setWeight(double newWeight) {
+		weight = Math.max(0, newWeight); // weight cannot be less than 0
+	}
+
+	public void setEnergyLevel(double newEnergyLevel) {
+		energyLevel = Math.max(0, Math.min(100, newEnergyLevel));
+	}
+
+
+
+	/**
+	 * Name: sleep Description: human sleeps to gain energy based on hours slept
+	 * 
+	 * @param hours - int value for the number of hours slept
+	 */
+	public void sleep(int hours) {
+		energyLevel = Math.min(100, energyLevel + 10 * hours); // cannot exceed 100% energy
+	}
+
+	/**
+	 * Name: run Description: human runs and loses energy and weight at the same
+	 * time
+	 * 
+	 * @param km - double value for the distance ran in km
+	 */
+	public void run(double km) {
+		energyLevel = Math.max(0, energyLevel - 3 * km); // 0.5% energy drop per km
+		weight = Math.max(0, weight - 0.001 * km); // 0.001kg weight drop per km
+	}
+	
+	public void eat(Vegetable veg, double grams, double calories) {
+		weight = weight - grams;
+		energyLevel = energyLevel + calories * 0.15;
+		if (weight < 0) {
+			System.out.println("I don’t have that much food");
+		}
+		if (weight > this.weight) {
+			System.out.println ("I don't have that much food");
+		}
+	}
+	
+	
+	public void eat(Cookie food, double grams, double calories) {
+		weight = weight - grams;
+		energyLevel = energyLevel + calories * 0.15;
+		if (weight < 0) {
+			System.out.println("I don’t have that much food");
+		}
+		if (weight > this.weight) {
+			System.out.println("I can’t eat the bag");
+		}
+	}
+
+	/**
+	 * Name: toString Description: returns all the attributes of the human in a
+	 * string
+	 * 
+	 * @return - one string value that contains all the attributes and their current
+	 *         values
+	 */
+	public String toString() {
+		return "Name: " + name + "\nWeight: " + weight + "\nEnergy Level: " + energyLevel;
+	}
+}
