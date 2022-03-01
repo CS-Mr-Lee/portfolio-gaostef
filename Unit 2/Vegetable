@@ -1,0 +1,66 @@
+
+public class Vegetable {
+	
+	private String name = "";
+	private double calories = -1;
+	private double weight = -1;
+	
+	public Vegetable (String name, double calories, double weight) {
+		this.name = name;
+		this.calories = calories;
+		if (weight <0){
+	        this.weight=1;
+	        } else{
+	            this.weight = weight;
+	    }
+	}
+	
+	//methods
+	
+	//accessors
+	
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public double getCalories() {
+		return this.calories;
+	}
+
+	
+	private double getWeight() {
+		return this.weight;
+	}
+	
+	//setters
+	
+	public void setWeight (double newWeight) {
+		  
+	      if (newWeight > this.weight) {
+	         this.weight = this.weight; //not to do anything
+	      } else if (newWeight < 0)  { //restriction from negative weight
+	         this.weight = 0; 
+	      } else if (newWeight == 0) { //specifically for 0
+	         this.weight = 0;
+	      } else { //all other cases
+	         this.weight = newWeight;
+	      }
+	}
+	public void eaten(double removedWeight) {
+		double percentage = weight * removedWeight;
+		weight = weight * percentage;
+		calories = calories *  percentage;
+		
+		if (weight < 0) {
+			weight = -1;
+		
+	}
+		if (calories < 0) {
+			calories = -1;
+		}
+	}
+	public String toString() {
+		return "Name: " + name + "\nWeight: " + weight + "\ncalories: " + calories;
+	}
+}
