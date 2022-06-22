@@ -26,14 +26,14 @@ import com.mygdx.entities.Monster;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.tools.CollisionRect;
 
-public class GameScreen implements Screen{
+public class GameScreen implements Screen {
 	Texture background;
 	Texture monster;
 	Texture player;
 	Texture menuIconInactive;
 	SpriteBatch batch;
 	Texture menuIcon;
-	//Texture npc1;
+	// Texture npc1;
 	float x;
 	float y;
 	private OrthographicCamera camera;
@@ -51,11 +51,11 @@ public class GameScreen implements Screen{
 	public static final float MAX_SPAWN_TIME = 2.0f;
 	private static final int MENU_BUTTON_WIDTH = 80;
 	private static final int MENU_BUTTON_HEIGHT = 80;
-	MyGdxGame game; 
+	MyGdxGame game;
 	float spawnTimer;
 	Random random;
-	
-	public GameScreen (MyGdxGame game) {
+
+	public GameScreen(MyGdxGame game) {
 		this.game = game;
 		playerRect = new CollisionRect(0, 0, 80, 80);
 		bullets = new ArrayList<Bullet>();
@@ -63,41 +63,43 @@ public class GameScreen implements Screen{
 		OrthographicCamera gamecam = new OrthographicCamera();
 		random = new Random();
 		spawnTimer = random.nextFloat() * (MAX_SPAWN_TIME - MIN_SPAWN_TIME) + MIN_SPAWN_TIME;
-		
+
 	}
+
 	@Override
 	public void show() {
 		menuIconInactive = new Texture("menuIconinactive.png");
 		background = new Texture("background.png");
 		player = new Texture("pietro.png");
 		menuIcon = new Texture("MenuIcon.png");
-		monster = new Texture ("monster.png");
+		monster = new Texture("monster.png");
 	}
 
 	@Override
 	public void render(float delta) {
-		//drawing the background
+		// drawing the background
 		ScreenUtils.clear(1, 0, 0, 1);
 		game.batch.begin();
 		game.batch.draw(background, 0, 0);
-		
-		if (Gdx.input.getX()< 610 + MENU_BUTTON_WIDTH && Gdx.input.getX() > 610 && 400 - Gdx.input.getY() < 310 + MENU_BUTTON_HEIGHT && 400 - Gdx.input.getY() > 700) {
-			game.batch.draw(menuIconInactive, 610, 310, MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT);
+
+		if (Gdx.input.getX() < 610 + MENU_BUTTON_WIDTH && Gdx.input.getX() > 610
+				&& 400 - Gdx.input.getY() < 310 + MENU_BUTTON_HEIGHT && 400 - Gdx.input.getY() > 700) {
+			game.batch.draw(menuIconInactive, 610, 310, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT);
 			if (Gdx.input.isTouched()) {
 				Gdx.app.exit();
 			}
-			
+
 		} else {
-			game.batch.draw(menuIcon, 610, 310, MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT);
+			game.batch.draw(menuIcon, 610, 310, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT);
 		}
 		game.batch.end();
-		
+
 		shootTimer += delta;
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-			bullets.add(new Bullet(x+40));
-			
+			bullets.add(new Bullet(x + 40));
+
 		}
-		
+
 		ArrayList<Bullet> bulletsToRemove = new ArrayList<Bullet>();
 		for (Bullet bullet : bullets) {
 			bullet.update(delta);
@@ -115,21 +117,20 @@ public class GameScreen implements Screen{
 			if (monster.remove)
 				monstersToRemove.add(monster);
 		}
-		
 
-		//movement
+		// movement
 		if (Gdx.input.isKeyPressed(Keys.UP)) {
 			y = y + 8;
 			if (y + 80 > 400) {
 				y = 400 - 80;
 			}
-		} 
+		}
 		if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			y = y-8;
-			if (y<0) {
-				y=0;
+			y = y - 8;
+			if (y < 0) {
+				y = 0;
 			}
-		} 
+		}
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			x = x + 8;
 			if (x + 80 > 700) {
@@ -137,86 +138,83 @@ public class GameScreen implements Screen{
 			}
 		}
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			x = x-8;
+			x = x - 8;
 			if (x < 0) {
 				x = 0;
 			}
 		}
-		
-		
-		
-		
-		//After player moves, update collision
-				playerRect.move(x, y);
-				
-				//check for collisions
-				for (Bullet bullet : bullets) {
-					for (Monster monster : monsters) {
-						if (bullet.getCollisionRect().collidesWith(monster.getCollisionRect())) {//Collision occured
-							bulletsToRemove.add(bullet);
-							monstersToRemove.add(monster);
-							
-						}
-					}
-				}
-				bullets.removeAll(bulletsToRemove);
-				monsters.removeAll(monstersToRemove);
-				
-				for (Monster monster : monsters) {
-					if (monster.getCollisionRect().collidesWith(playerRect)) {
-						monstersToRemove.add(monster);
-					}
-				}
-				
-				game.batch.begin();
 
-				for (Bullet bullet : bullets) {
-					bullet.render(game.batch);
+		// After player moves, update collision
+		playerRect.move(x, y);
+
+		// check for collisions
+		for (Bullet bullet : bullets) {
+			for (Monster monster : monsters) {
+				if (bullet.getCollisionRect().collidesWith(monster.getCollisionRect())) {// Collision occured
+					bulletsToRemove.add(bullet);
+					monstersToRemove.add(monster);
+
 				}
-				for (Monster monster : monsters) {
-					monster.render(game.batch);
-				}
-				game.batch.draw(player, x, y);
-				game.batch.end();
+			}
+		}
+		bullets.removeAll(bulletsToRemove);
+		monsters.removeAll(monstersToRemove);
+
+		for (Monster monster : monsters) {
+			if (monster.getCollisionRect().collidesWith(playerRect)) {
+				monstersToRemove.add(monster);
+			}
+		}
+
+		game.batch.begin();
+
+		for (Bullet bullet : bullets) {
+			bullet.render(game.batch);
+		}
+		for (Monster monster : monsters) {
+			monster.render(game.batch);
+		}
+		game.batch.draw(player, x, y);
+		game.batch.end();
 	}
-	
 
 	private boolean isLeft() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	private boolean isRight() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void dispose() {
-		
-		
+
 	}
 
 }

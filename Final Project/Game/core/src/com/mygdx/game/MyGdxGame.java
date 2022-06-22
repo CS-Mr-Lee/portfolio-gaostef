@@ -24,33 +24,30 @@ import com.badlogic.gdx.math.Vector3;
 
 public class MyGdxGame extends Game {
 
-	
 	public static final int PPM = 0;
 	public static final int V_WIDTH = 0;
 	public static final int V_HEIGHT = 0;
 	public SpriteBatch batch;
 
-	
 	@Override
-	public void create () {
-		
-		//launches the menu screen
+	public void create() {
+
+		// launches the menu screen
 		batch = new SpriteBatch();
 		this.setScreen(new MenuScreen(this));
 
-	
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 //		camera.update();
 		super.render();
 
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		batch.dispose();
-		
+
 	}
 }
